@@ -12,7 +12,8 @@ class BotsPage extends React.Component {
     yourBotArmy: [],
     show: false,
     bot: null,
-    filter: "All"
+    filter: "All",
+    search: null
   }
 
   componentDidMount(){
@@ -51,12 +52,20 @@ class BotsPage extends React.Component {
 
   filterBots = () => {
     let botsList = this.state.bots
-
+    if (this.state.search !== null) {
+      botsList = botsList.filter(bot => bot.name.includes(this.state.search))
+    }
     if (this.state.filter !== "All") {
       botsList = botsList.filter(bot => bot.bot_class === this.state.filter)
     }
 
     return botsList
+  }
+
+  searchBots = value  => {
+    this.setState({
+      search: value
+    })
   }
 
   removeBot = thisBot => {
@@ -79,7 +88,7 @@ class BotsPage extends React.Component {
         handleClick={this.removeBot}
         myArmy={true}
         />
-        <SearchBar addFilter={this.addFilter}/>
+        <SearchBar addFilter={this.addFilter} searchBots={this.searchBots}/>
         {this.state.show? 
         <BotSpecs 
           bot={this.state.bot} 

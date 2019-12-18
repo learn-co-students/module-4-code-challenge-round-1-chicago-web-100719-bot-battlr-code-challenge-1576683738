@@ -16,3 +16,13 @@
 .searchBar{
   height:100px;
 }
+
+.search {
+  display:inline-block;
+  float:right;
+}
+
+.filter {
+  display:inline-block;
+  float:left;
+}
