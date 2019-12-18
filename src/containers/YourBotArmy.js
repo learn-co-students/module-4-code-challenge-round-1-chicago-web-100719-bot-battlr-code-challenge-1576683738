@@ -5,7 +5,12 @@ class YourBotArmy extends React.Component {
   //your bot army code here...
   createBots = () => {
     return this.props.bots.map(bot => {
-      return <BotCard bot={bot} handleClick={this.props.handleClick} myArmy={true}/>
+      return <BotCard 
+                bot={bot} 
+                handleClick={this.props.handleClick} 
+                myArmy={true} 
+                key={bot.id}
+              />
     })
   }
 

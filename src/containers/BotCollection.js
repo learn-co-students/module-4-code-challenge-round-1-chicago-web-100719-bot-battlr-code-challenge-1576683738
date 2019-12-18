@@ -1,5 +1,6 @@
 import React from "react";
 import BotCard from "../components/BotCard";
+import SearchBar from "../components/SearchBar"
 
 class BotCollection extends React.Component {
 	//your code here
@@ -11,17 +12,20 @@ class BotCollection extends React.Component {
 								toggleShow={this.props.toggleShow} 
 								displayBot={this.props.displayBot}
 								myArmy={false}
+								key={bot.id}
 							/>
 		})
 	}
 
   render(){
   	return (
-  	  <div className="ui four column grid">
-    		<div className="row">
-    		  {this.createBots()}
-    		</div>
-  	  </div>
+			<div>
+				 <div className="ui four column grid">
+					<div className="row">
+						{this.createBots()}
+					</div>
+  	  	</div>
+			</div>
   	);
   }
 

@@ -2,21 +2,17 @@ import React from "react";
 import BotCollection from './BotCollection'
 import YourBotArmy from './YourBotArmy'
 import BotSpecs from '../components/BotSpecs'
+import SearchBar from "../components/SearchBar"
+
 
 class BotsPage extends React.Component {
-  //start here with your code for step one
-  // constructor(){
-  //   super()
-  //   this.state = {
-  //     bots: []
-  //   }
-  // }
 
   state = {
     bots: [],
     yourBotArmy: [],
     show: false,
-    bot: null
+    bot: null,
+    filter: "All"
   }
 
   componentDidMount(){
@@ -29,15 +25,17 @@ class BotsPage extends React.Component {
     })
   }
 
+  addFilter = e => {
+    this.setState({
+      filter: e.target.value
+    })
+  }
+
   toggleShow = () => {
     console.log('hello!')
     this.setState({
       show: !this.state.show
     })
-  }
-
-  displayBot = bot  => {
-
   }
 
   addBot = bot => {
@@ -49,6 +47,16 @@ class BotsPage extends React.Component {
     } else {
       alert("You've already added this bot!")
     }
+  }
+
+  filterBots = () => {
+    let botsList = this.state.bots
+
+    if (this.state.filter !== "All") {
+      botsList = botsList.filter(bot => bot.bot_class === this.state.filter)
+    }
+
+    return botsList
   }
 
   removeBot = thisBot => {
@@ -69,10 +77,9 @@ class BotsPage extends React.Component {
         <YourBotArmy 
         bots={this.state.yourBotArmy} 
         handleClick={this.removeBot}
-        // yourBotArmy={this.state.yourBotArmy}
         myArmy={true}
         />
-
+        <SearchBar addFilter={this.addFilter}/>
         {this.state.show? 
         <BotSpecs 
           bot={this.state.bot} 
@@ -81,7 +88,8 @@ class BotsPage extends React.Component {
         /> 
         : 
         <BotCollection 
-          bots={this.state.bots}
+          // bots={this.state.bots}
+          bots={this.filterBots()}
           toggleShow={this.toggleShow} 
           displayBot={this.displayBot}
           myArmy={false}
