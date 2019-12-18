@@ -24,7 +24,7 @@ const BotCard = props => {
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => console.log("add code to connect event listener")}
+        onClick={() => console.log('click')} //Couldn't pass down props to link handler --- tried {() => props.addBot}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
