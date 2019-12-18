@@ -12,10 +12,15 @@ class BotsPage extends React.Component {
     }
   }
 
-  handleCollectionClick = (bot) => {
-    let newArmyArray = this.state.botArmy.slice()
-    newArmyArray.push(bot)
-    this.setState({botArmy: newArmyArray})
+  handleCollectionClick = (addBot) => {
+    const idArray = this.state.botArmy.map(bot => bot.id)
+    if (idArray.includes(addBot.id)) {
+      return null
+    } else {
+      let newArmyArray = this.state.botArmy.slice()
+      newArmyArray.push(addBot)
+      this.setState({botArmy: newArmyArray})
+    }
   }
 
   handleArmyClick = deleteBot => {
