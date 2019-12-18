@@ -30,6 +30,13 @@ class BotCollection extends React.Component {
 		<div>
 		{this.state.selectedBot === '' ? (
 			<div className="ui four column grid">
+				<label>Sort By:</label>
+				<select onChange={(event) => this.props.onSort(event.target.value)} >
+					<option value="none"></option>
+					<option value="armor">Armor</option>
+					<option value="health">Health</option>
+					<option value="damage">Damage</option>
+				</select>
 				<div className="row">
 
 					{this.displayBots() }
