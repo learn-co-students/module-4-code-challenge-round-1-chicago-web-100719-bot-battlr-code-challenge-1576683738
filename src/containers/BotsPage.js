@@ -18,6 +18,12 @@ class BotsPage extends React.Component {
     this.setState({botArmy: newArmyArray})
   }
 
+  handleArmyClick = deleteBot => {
+    const index = this.state.botArmy.findIndex(bot => bot.id === deleteBot.id)
+    let newArmyArray = this.state.botArmy.slice()
+    newArmyArray.splice(index, 1)
+    this.setState({botArmy: newArmyArray})
+  }
 
   componentDidMount() {
     fetch(' https://bot-battler-api.herokuapp.com/api/v1/bots')
@@ -29,7 +35,7 @@ class BotsPage extends React.Component {
     return (
       <div>
         {/* put your components here */}
-        <YourBotArmy bots={this.state.botArmy} />
+        <YourBotArmy handleClick={this.handleArmyClick} bots={this.state.botArmy} />
         <BotCollection handleClick={this.handleCollectionClick} bots={this.state.bots} />
       </div>
     );
