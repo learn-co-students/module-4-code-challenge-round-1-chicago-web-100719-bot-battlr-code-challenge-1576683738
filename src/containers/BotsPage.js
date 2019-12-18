@@ -2,13 +2,16 @@ import React from "react";
 import BotCollection from './BotCollection'
 import YourBotArmy from "./YourBotArmy";
 import BotSpecs from "../components/BotSpecs";
+import Filter from "../components/Filter"
 
 class BotsPage extends React.Component {
   state={
     bots:[],
     botArmy:[],
     showInfo: false,
-    infoBot:[]
+    infoBot:[],
+    filteredBots: [],
+    filterClass: "All"
   }
   
   componentDidMount(){
@@ -40,7 +43,9 @@ class BotsPage extends React.Component {
     this.setState({showInfo:false, infoBot:[]})
   }
 
-
+  filterClass = (filterClass) => {
+    this.setState({filterClass:filterClass})
+  }
 
   showSwitch = () =>{
     if (this.state.showInfo === false){
@@ -61,6 +66,7 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
+        <Filter filterClass={this.filterClass}/>
         <YourBotArmy botArmy={this.state.botArmy} handleClick={this.handleClick} />
         {this.showSwitch()}
       </div>
