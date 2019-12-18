@@ -19,11 +19,17 @@ class BotsPage extends React.Component {
     .catch(err => console.log(err.message))
   }
 
+  recruitBot = (bot) => {
+    let myArmy = this.state.army
+    myArmy.push(bot)
+    this.setState({army: myArmy})
+  }
+
 
   render() {
     return (
       <div>
-        <BotCollection bots={this.state.bots}/>
+        <BotCollection bots={this.state.bots} onClick={this.recruitBot}/>
       </div>
     );
   }
