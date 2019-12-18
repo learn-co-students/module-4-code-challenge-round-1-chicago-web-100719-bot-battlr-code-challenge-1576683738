@@ -1,19 +1,35 @@
 import React from "react";
 import BotCard from "../components/BotCard";
+import BotSpecs from '../components/BotSpecs'
 
 class BotCollection extends React.Component {
+
+	state={
+		selectedBot: ''
+	}
 	displayBots = () => {
 		return this.props.bots.map(bot => {
-		  return <BotCard bot={bot} key={bot.id} onClick={this.props.onClick}/>
+		  return <BotCard bot={bot} key={bot.id} onClick={this.selectBot}/>
 		})
-	  }
+	}
+
+	selectBot = (bot) => {
+		this.setState({selectedBot: bot})
+	}
+
+	unselectBot = () => {
+		this.setState({selectedBot: ''})
+	}
+
+	showSelectedBot = () => {
+		return <BotSpecs bot={this.state.selectedBot} recruitBot={this.props.recruitBot} goBack={this.unselectBot}/>
+	}
 	
   render(){
   	return (
   	  <div className="ui four column grid">
     		<div className="row">
-    		  {/* Collection of all bots */}
-			  {this.displayBots()}
+			  {this.state.selectedBot === '' ? this.displayBots() : this.showSelectedBot()}
     		</div>
   	  </div>
   	);

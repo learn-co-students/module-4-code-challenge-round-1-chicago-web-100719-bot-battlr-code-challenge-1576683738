@@ -37,8 +37,8 @@ class BotsPage extends React.Component {
   render() {
     return (
       <div>
-        <BotCollection bots={this.state.bots} onClick={this.recruitBot}/>
         <YourBotArmy bots={this.state.army} onClick={this.dischargeBot}/>
+        <BotCollection bots={this.state.bots} recruitBot={this.recruitBot}/>
       </div>
     );
   }
