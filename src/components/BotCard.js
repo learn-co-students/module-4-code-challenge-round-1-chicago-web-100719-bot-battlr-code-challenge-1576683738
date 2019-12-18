@@ -24,9 +24,9 @@ const BotCard = props => {
       <div
         className="ui card"
         key={bot.id}
-        onClick={ props.draftBot ? 
-          () => props.draftBot(bot) :
-          () => props.removeBot(bot)}
+        onClick={ props.handleShowPage ? 
+        () => props.handleShowPage(bot) :
+        () => props.removeBot(bot)}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
