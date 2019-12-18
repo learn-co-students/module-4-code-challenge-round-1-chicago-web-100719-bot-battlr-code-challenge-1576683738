@@ -14,7 +14,7 @@ class BotsPage extends React.Component {
     }
   }
 
-  handleSpecsClick = (addBot) => {
+  handleSpecsClick = addBot => {
     const idArray = this.state.botArmy.map(bot => bot.id)
     if (idArray.includes(addBot.id)) {
       return null
