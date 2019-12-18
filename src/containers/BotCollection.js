@@ -27,11 +27,17 @@ class BotCollection extends React.Component {
 	
   render(){
   	return (
-  	  <div className="ui four column grid">
-    		<div className="row">
-			  {this.state.selectedBot === '' ? this.displayBots() : this.showSelectedBot()}
-    		</div>
-  	  </div>
+		<div>
+		{this.state.selectedBot === '' ? (
+			<div className="ui four column grid">
+				<div className="row">
+
+					{this.displayBots() }
+
+  	  
+    			</div>
+  	  		</div>) : this.showSelectedBot()}
+		</div>
   	);
   }
 
