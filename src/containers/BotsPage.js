@@ -1,7 +1,6 @@
 import React from "react";
 import BotCollection from './BotCollection'
 import YourBotArmy from './YourBotArmy'
-import BotCard from '../components/BotCard'
 
 
 
@@ -21,7 +20,16 @@ class BotsPage extends React.Component {
 
   recruitBot = (bot) => {
     let myArmy = this.state.army
-    myArmy.push(bot)
+    if (!myArmy.includes(bot)){
+      myArmy.push(bot)
+      this.setState({army: myArmy})
+    }
+  }
+
+  dischargeBot = (bot) => {
+    let myArmy = this.state.army
+    let index = myArmy.indexOf(myArmy.find(item => item === bot))
+    myArmy.splice(index, 1)
     this.setState({army: myArmy})
   }
 
@@ -30,6 +38,7 @@ class BotsPage extends React.Component {
     return (
       <div>
         <BotCollection bots={this.state.bots} onClick={this.recruitBot}/>
+        <YourBotArmy bots={this.state.army} onClick={this.dischargeBot}/>
       </div>
     );
   }
